@@ -3,4 +3,5 @@ using UnityEngine.UI;
 
 public class Item : MonoBehaviour {
 	public Image itemImage;
+	public int itemIndex;
 }
