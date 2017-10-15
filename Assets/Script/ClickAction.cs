@@ -5,9 +5,8 @@ using UnityEngine.EventSystems;
 
 public class ClickAction : MonoBehaviour
 {
-
     public void OnPointerClick(PointerEventData eventData)
     {
-        
+        Debug.Log("AAAAA");
     }
 }
