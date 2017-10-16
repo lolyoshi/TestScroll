@@ -7,7 +7,6 @@ public class ScrollList : MonoBehaviour
 {
     public GameObject prefab;
     public Transform contentPanel;
-    public ScrollRect scrollView;
     public int itemAmount;
 
     private const int IMAGE_COUNT = 10;
@@ -42,13 +41,21 @@ public class ScrollList : MonoBehaviour
         {
             GameObject itemObject = Instantiate(prefab) as GameObject;
             Item item = itemObject.GetComponent<Item>();
+            if (item == null) {
+                continue;
+            }
+
             item.itemImage.sprite = Resources.Load<Sprite>(((i % 10) + 1).ToString());
-            item.itemImage.preserveAspect = true;
-            item.transform.SetParent(contentPanel);
             item.itemIndex = i + 1;
+            item.transform.SetParent(contentPanel);
+            item.itemImage.preserveAspect = true;
 
             //move and size the new item
             RectTransform rectTransform = item.GetComponent<RectTransform>();
+            if (rectTransform == null) {
+                continue;
+            }
+            
             float y = (rowRectTransform.rect.height - PADDING) * i + rowRectTransform.rect.height / 2 ;
             rectTransform.localPosition = new Vector3(rowRectTransform.rect.width / 2, y, 0);
         }
